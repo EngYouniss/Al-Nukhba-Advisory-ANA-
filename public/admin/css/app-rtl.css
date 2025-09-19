@@ -13,6 +13,12 @@ html {
 *::after {
   box-sizing: inherit; }
 
+
+  /* tables-design */
+    /* روح Filament v4 مع Bootstrap 4 */
+
+/* end */
+
 .container {
   width: 100%;
   padding-right: 15px;

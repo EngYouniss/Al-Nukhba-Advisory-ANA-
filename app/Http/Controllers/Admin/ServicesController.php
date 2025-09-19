@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreServicesRequest;
+use App\Models\Services;
 use Illuminate\Http\Request;
 
 class ServicesController extends Controller
@@ -12,7 +14,8 @@ class ServicesController extends Controller
      */
     public function index()
     {
-        return view('admin.services.index');
+        $services = Services::paginate(8);
+        return view('admin.services.index', get_defined_vars());
     }
 
     /**
@@ -20,15 +23,21 @@ class ServicesController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.services.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreServicesRequest $request)
     {
-        //
+        $validated = $request->validated();
+        try {
+            Services::create($validated);
+            return to_route('services.index')->with('success', 'Service created successfully');
+        } catch (\Exception $exceptions) {
+            return back()->with('error', $exceptions->getMessage());
+        }
     }
 
     /**
@@ -42,17 +51,25 @@ class ServicesController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(string $slug)
     {
-        //
+        $service = Services::findBySlug($slug);
+        return view('admin.services.update', get_defined_vars());
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(StoreServicesRequest $request, string $slug)
     {
-        //
+        $validated = $request->validated();
+        try {
+            $service = Services::findOrFail($slug);
+            $service->update($validated);
+            return to_route('services.index')->with('success', 'Service updated successfully');
+        } catch (\Exception $exceptions) {
+            return back()->with('error', $exceptions->getMessage());
+        }
     }
 
     /**
@@ -60,6 +77,8 @@ class ServicesController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $service = Services::findOrFail($id);
+        $service->delete();
+        return to_route('services.index')->with('success', 'Service deleted successfully');
     }
 }

@@ -44,18 +44,19 @@
                     <p>{{ session('error') }}</p>
                 @endif
                 <div class="fi-header">
-                    <h6 class="fi-title">إضافة خدمة</h6>
+                    <h6 class="fi-title">تعديل خدمة</h6>
                 </div>
 
 
                 <div class="fi-body">
-                    <form action="{{ route('services.store') }}" method="POST">
+                    <form action="{{ route('services.update',['service'=>$service]) }}" method="POST">
+                        @method('PUT')
                         @csrf
                         <div class="form-row ">
                             <div class="form-group col-md-12">
                                 <label>اسم الخدمة</label>
                                 <input type="text" class="form-control" placeholder="مثال: خدمة الاستشارات"
-                                    name="title">
+                                    name="title" value="{{$service->title}}">
                                 @error('title')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
@@ -67,14 +68,14 @@
                             <div class="form-group col-md-6">
                                 <label>الأيقونة (كلاس)</label>
                                 <input type="text" class="form-control" placeholder="bi bi-gear أو fa fa-cog"
-                                    name="icon">
-                                @error('title')
+                                    name="icon" value="{{$service->icon}}">
+                                @error('icon')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
                             </div>
                             <div class="form-group col-md-6">
                                 <label>الوصف</label>
-                                <textarea rows="2" class="form-control" placeholder="وصف مختصر للخدمة" name="description"></textarea>
+                                <textarea rows="2" class="form-control" placeholder="وصف مختصر للخدمة" name="description" >{{$service->description}}</textarea>
                                 @error('description')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
@@ -86,7 +87,7 @@
                             <input type="hidden" name="status" value="0">
                             <div class="custom-control custom-switch mt-2">
                                 <input type="checkbox" class="custom-control-input" id="is_active" name="status"
-                                    value="1" {{ old('status', 1) ? 'checked' : '' }}>
+                                    value="1" {{ old('status', $service->status) ? 'checked' : '' }}>
                                 <label class="custom-control-label" for="is_active">مفعل</label>
                             </div>
                         </div>

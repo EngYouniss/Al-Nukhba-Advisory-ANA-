@@ -52,13 +52,13 @@
           </p>
           <ul class="navbar-nav flex-fill w-100 mb-2">
               <li class="nav-item ">
-                  <a href="#ui-elements"  aria-expanded="false" class=" nav-link">
+                  <a href="{{route('services.index')}}"  aria-expanded="false" class=" nav-link">
                       <i class="fe fe-box fe-16"></i>
                       <span class="ml-3 item-text">الخدمات</span>
                   </a>
 
               </li>
-               
+
 
 
 
