@@ -2,6 +2,13 @@
 <html lang="en">
  @include('admin.partials.head')
   <body class="vertical  light rtl ">
+{{-- إشعار منبثق باستخدام Bootstrap 4 بتصميم مطور --}}
+@if (session('success'))
+
+<x-alert type="{{session('success')}}"></x-alert>
+@endif
+
+
     <div class="wrapper">
     @include('admin.partials.navbar')
 
@@ -135,8 +142,10 @@
             </div>
           </div>
         </div>
+
       </main> <!-- main -->
     </div> <!-- .wrapper -->
- @include('admin.partials.scripts')
+@include('admin.partials.scripts')
+@stack('scripts')
   </body>
 </html>

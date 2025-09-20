@@ -2,21 +2,23 @@
 @section('content')
     <!-- العنوان الرئيسي -->
     <div class="fi-page-title mt-4">قائمة الخدمات</div>
-    @if (session('success'))
-        <p class="alert alert-success">{{ session('success') }}</p>
-    @endif
+
     <div class="fi-card card ">
         <div class="fi-card-header card-header">
             <div class="d-flex justify-content-between align-items-center">
                 <!-- البحث -->
                 <div class="input-group input-group-sm fi-search" style="max-width: 200px;">
-                    <input type="text" class="form-control" placeholder="ابحث عن خدمة">
+                    <form action="{{ route('services.index') }}" method="GET" class="d-flex w-100">
+                        <input type="text" name="q" value="{{ request('q') }}" class="form-control"
+                            placeholder="ابحث عن خدمة...">
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary ml-1" type="submit">بحث</button>
+                        </div>
+                    </form>
                 </div>
 
-                <!-- الزر -->
-                <a href="{{ route('services.create') }}" type="button" class="btn btn-primary btn-sm fi-btn-primary">
-                    <i class="bi bi-plus-lg ml-1"></i> إضافة خدمة
-                </a>
+
+                <x-button-href href="{{ route('services.create') }}" title="إضافة خدمة"></x-button-href>
             </div>
         </div>
 
@@ -41,7 +43,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($services as $service)
+                        @forelse ($services as $service)
                             <tr>
                                 <td class="text-center">
                                     <div class="custom-control custom-checkbox m-0 d-inline-block">
@@ -74,11 +76,15 @@
                                     </div>
                                 </td>
                             </tr>
-                        @endforeach
 
-                        <!-- صفوف أخرى -->
+                        @empty
+                            <x-alert-no-found></x-alert-no-found>
+                        @endforelse
+
+                        {{-- Alert --}}
                     </tbody>
                 </table>
+
                 <div class="d-flex justify-content-center mt-3">
                     {{ $services->links('pagination::bootstrap-5') }}
                 </div>

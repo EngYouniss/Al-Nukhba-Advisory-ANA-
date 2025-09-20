@@ -12,9 +12,16 @@ class ServicesController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $services = Services::paginate(8);
+        $query = Services::query();
+        if ($request->filled('q')) {
+            $search = $request->input('q');
+            $query->where('title', 'like', "%{$search}%");
+        }
+        $services = $query->latest()->paginate(10);
+
+
         return view('admin.services.index', get_defined_vars());
     }
 
