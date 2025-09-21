@@ -14,12 +14,14 @@ class OperationsDropdown extends Component
     public $editRoute;
     public $deleteRoute;
     public $activateRoute;
+    public $showRoute;
 
-    public function __construct($editRoute = null, $deleteRoute = null, $activateRoute = null)
+    public function __construct($editRoute = null, $deleteRoute = null, $activateRoute = null,$showRoute=null)
     {
         $this->editRoute    = $editRoute;
         $this->deleteRoute  = $deleteRoute;
         $this->activateRoute = $activateRoute;
+        $this->showRoute = $showRoute;
     }
 
 

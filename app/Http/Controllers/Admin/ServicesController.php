@@ -86,6 +86,6 @@ class ServicesController extends Controller
     {
         $service = Services::findOrFail($id);
         $service->delete();
-        return to_route('services.index')->with('success', 'Service deleted successfully');
+        return to_route('services.index')->with('success', 'تم الحذف بنجاح');
     }
 }

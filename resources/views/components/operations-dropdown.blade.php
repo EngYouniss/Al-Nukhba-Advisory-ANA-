@@ -14,4 +14,7 @@
     @if ($activateRoute)
         <a class="dropdown-item" href="{{ $activateRoute }}">تفعيل</a>
     @endif
+    @if ($showRoute)
+        <a class="dropdown-item" href="{{ $showRoute }}">عرض</a>
+    @endif
 </div>

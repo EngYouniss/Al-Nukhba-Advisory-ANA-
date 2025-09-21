@@ -7,12 +7,16 @@ use Illuminate\Database\Eloquent\Model;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 
-class Page extends Model
+class Testmonial extends Model
 {
-    /** @use HasFactory<\Database\Factories\PageFactory> */
-     use HasFactory,HasSlug;
-    protected  $guarded=['id'];
-      public function getSlugOptions() : SlugOptions
+    /** @use HasFactory<\Database\Factories\TestmonialFactory> */
+    use HasFactory,HasSlug;
+
+     protected $guarded=['id'];
+    /**
+     * Get the options for generating the slug.
+     */
+    public function getSlugOptions() : SlugOptions
     {
         return SlugOptions::create()
             ->generateSlugsFrom('title')
