@@ -49,17 +49,16 @@
 
 
                 <div class="fi-body">
-                    <form action="{{ route('services.update',['service'=>$service]) }}" method="POST">
+                    <form action="{{ route('services.update', ['service' => $service->id]) }}" method="POST">
                         @method('PUT')
                         @csrf
                         <div class="form-row ">
                             <div class="form-group col-md-12">
                                 <label>اسم الخدمة</label>
                                 <input type="text" class="form-control" placeholder="مثال: خدمة الاستشارات"
-                                    name="title" value="{{$service->title}}">
-                                @error('title')
-                                    <span class="text-danger">{{ $message }}</span>
-                                @enderror
+                                    name="title" value="{{ $service->title }}">
+                                <x-validation-error field="title"></x-validation-error>
+
                             </div>
 
                         </div>
@@ -68,17 +67,15 @@
                             <div class="form-group col-md-6">
                                 <label>الأيقونة (كلاس)</label>
                                 <input type="text" class="form-control" placeholder="bi bi-gear أو fa fa-cog"
-                                    name="icon" value="{{$service->icon}}">
-                                @error('icon')
-                                    <span class="text-danger">{{ $message }}</span>
-                                @enderror
+                                    name="icon" value="{{ $service->icon }}">
+                                <x-validation-error field="icon"></x-validation-error>
+
                             </div>
                             <div class="form-group col-md-6">
                                 <label>الوصف</label>
-                                <textarea rows="2" class="form-control" placeholder="وصف مختصر للخدمة" name="description" >{{$service->description}}</textarea>
-                                @error('description')
-                                    <span class="text-danger">{{ $message }}</span>
-                                @enderror
+                                <textarea rows="2" class="form-control" placeholder="وصف مختصر للخدمة" name="description">{{ $service->description }}</textarea>
+                                <x-validation-error field="description"></x-validation-error>
+
                             </div>
                         </div>
 
@@ -93,7 +90,7 @@
                         </div>
 
                         <div class="fi-actions d-flex justify-content-between align-items-center">
-                            <a href="#" class="btn btn-light">رجوع</a>
+                            <a href="{{route('services.index')}}" class="btn btn-light">رجوع</a>
                             <input type="submit" class="btn btn-primary" value="حفظ الخدمة">
                         </div>
                     </form>

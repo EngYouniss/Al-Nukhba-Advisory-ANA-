@@ -36,6 +36,7 @@ class StoreServicesRequest extends FormRequest
             'title.max'=>'هذا الحقل اكبر من 255',
             'description.max'=>'هذا الحقل اكبر من 255',
             'description.required'=>'هذا الحقل مطلوب',
+            'icon.required'=>'هذا الحقل مطلوب',
         ];
     }
 }

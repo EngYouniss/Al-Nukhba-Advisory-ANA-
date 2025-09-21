@@ -44,17 +44,17 @@
                     <x-alert :type="session('error')"></x-alert>
                 @endif
                 <div class="fi-header">
-                    <h6 class="fi-title">إضافة خدمة</h6>
+                    <h6 class="fi-title">إضافة ميزة</h6>
                 </div>
 
 
                 <div class="fi-body">
-                    <form action="{{ route('services.store') }}" method="POST">
+                    <form action="{{ route('features.store') }}" method="POST">
                         @csrf
                         <div class="form-row ">
                             <div class="form-group col-md-12">
-                                <label>اسم الخدمة</label>
-                                <input type="text" class="form-control" placeholder="مثال: خدمة الاستشارات"
+                                <label>اسم الميزة</label>
+                                <input type="text" class="form-control" placeholder="مثال:  الاستشارات"
                                     name="title">
                                 <x-validation-error field="title"></x-validation-error>
                             </div>
@@ -71,7 +71,7 @@
                             </div>
                             <div class="form-group col-md-6">
                                 <label>الوصف</label>
-                                <textarea rows="2" class="form-control" placeholder="وصف مختصر للخدمة" name="description"></textarea>
+                                <textarea rows="2" class="form-control" placeholder="وصف مختصر للميزة" name="description"></textarea>
                                 <x-validation-error field="description"></x-validation-error>
 
                             </div>
@@ -88,7 +88,7 @@
                         </div>
 
                         <div class="fi-actions d-flex justify-content-between align-items-center">
-                            <a href="{{route('services.index')}}" class="btn btn-light">رجوع</a>
+                            <a href="{{route('features.index')}}" class="btn btn-light">رجوع</a>
                             <input type="submit" class="btn btn-primary" value="حفظ الخدمة">
                         </div>
                     </form>

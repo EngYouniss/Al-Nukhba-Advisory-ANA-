@@ -52,8 +52,9 @@
           </p>
           <ul class="navbar-nav flex-fill w-100 mb-2">
               {{-- Services --}}
-              <x-side-bar-tab href="{{ route('services.index') }}" icon="fe-box"
-              name="الميزات"></x-side-bar-tab>
+              <x-side-bar-tab href="{{ route('services.index') }}" icon="fe-box" name="الخدمات"></x-side-bar-tab>
+              {{-- Features --}}
+              <x-side-bar-tab href="{{ route('features.index') }}" icon="fe-box" name="الميزات"></x-side-bar-tab>
 
 
 

@@ -8,7 +8,7 @@
             <div class="d-flex justify-content-between align-items-center">
                 <!-- البحث -->
                 <div class="input-group input-group-sm fi-search" style="max-width: 200px;">
-                    <form action="{{ route('services.index') }}" method="GET" class="d-flex w-100">
+                    <form action="{{ route('features.index') }}" method="GET" class="d-flex w-100">
                         <input type="text" name="q" value="{{ request('q') }}" class="form-control"
                             placeholder="ابحث عن خدمة...">
                         <div class="input-group-append">
@@ -18,7 +18,7 @@
                 </div>
 
 
-                <x-button-href :href="route('services.create') " title="إضافة خدمة"></x-button-href>
+                <x-button-href :href="route('features.create')" title="إضافة ميزة"></x-button-href>
             </div>
         </div>
 
@@ -43,7 +43,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @forelse ($services as $service)
+                        @forelse ($features as $feature)
                             <tr>
                                 <td class="text-center">
                                     <div class="custom-control custom-checkbox m-0 d-inline-block">
@@ -51,24 +51,20 @@
                                         <label class="custom-control-label" for="r1"></label>
                                     </div>
                                 </td>
-                                <td>{{ $services->firstItem() + $loop->index }}</td>
-                                <td>{{ $service->title }}</td>
-                                <td><i class="bi {{ $service->icon }}"></i></td>
+                                <td>{{ $features->firstItem() + $loop->index }}</td>
+                                <td>{{ $feature->title }}</td>
+                                <td><i class="bi {{ $feature->icon }}"></i></td>
                                 <td><span
-                                        class="badge badge-{{ $service->status === 1 ? 'info' : 'success' }} badge-pill">{{ $service->status === 1 ? 'مفعل' : 'غير مفعل' }}</span>
+                                        class="badge badge-{{ $feature->status === 1 ? 'info' : 'success' }} badge-pill">{{ $feature->status === 1 ? 'مفعل' : 'غير مفعل' }}</span>
                                 </td>
-                                <td>{{ $service->created_at->format('d-m-Y') }}</td>
+                                <td>{{ $feature->created_at->format('d-m-Y') }}</td>
                                 <td class="text-right">
                                     <div class="dropdown">
                                         <button class="btn btn-outline-secondary btn-sm dropdown-toggle" type="button"
                                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             إجراءات
                                         </button>
-                                        <x-operations-dropdown
-                                        :edit-route="route('services.edit', $service->slug)"
-                                        :delete-route="route('services.destroy', $service->id)"
-
-/>
+                                        <x-operations-dropdown :edit-route="route('features.edit', $feature->slug)" :delete-route="route('features.destroy', $feature->id)" />
 
                                     </div>
                                 </td>
@@ -83,7 +79,7 @@
                 </table>
 
                 <div class="d-flex justify-content-center mt-3">
-                    {{ $services->links('pagination::bootstrap-5') }}
+                    {{ $features->links('pagination::bootstrap-5') }}
                 </div>
             </div>
         </div>

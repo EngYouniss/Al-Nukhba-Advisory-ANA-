@@ -41,22 +41,24 @@
         <div class="col-md-12 mb-5">
             <div class="card fi-card">
                 @if (session('error'))
-                    <x-alert :type="session('error')"></x-alert>
+                    <p>{{ session('error') }}</p>
                 @endif
                 <div class="fi-header">
-                    <h6 class="fi-title">إضافة خدمة</h6>
+                    <h6 class="fi-title">تعديل ميزة</h6>
                 </div>
 
 
                 <div class="fi-body">
-                    <form action="{{ route('services.store') }}" method="POST">
+                    <form action="{{ route('features.update', ['feature' => $feature->id]) }}" method="POST">
+                        @method('PUT')
                         @csrf
                         <div class="form-row ">
                             <div class="form-group col-md-12">
-                                <label>اسم الخدمة</label>
-                                <input type="text" class="form-control" placeholder="مثال: خدمة الاستشارات"
-                                    name="title">
+                                <label>اسم الميزة</label>
+                                <input type="text" class="form-control" placeholder="مثال:  الاستشارات"
+                                    name="title" value="{{ $feature->title }}">
                                 <x-validation-error field="title"></x-validation-error>
+
                             </div>
 
                         </div>
@@ -65,13 +67,13 @@
                             <div class="form-group col-md-6">
                                 <label>الأيقونة (كلاس)</label>
                                 <input type="text" class="form-control" placeholder="bi bi-gear أو fa fa-cog"
-                                    name="icon">
+                                    name="icon" value="{{ $feature->icon }}">
                                 <x-validation-error field="icon"></x-validation-error>
 
                             </div>
                             <div class="form-group col-md-6">
                                 <label>الوصف</label>
-                                <textarea rows="2" class="form-control" placeholder="وصف مختصر للخدمة" name="description"></textarea>
+                                <textarea rows="2" class="form-control" placeholder="وصف مختصر للميزة" name="description">{{ $feature->description }}</textarea>
                                 <x-validation-error field="description"></x-validation-error>
 
                             </div>
@@ -82,13 +84,13 @@
                             <input type="hidden" name="status" value="0">
                             <div class="custom-control custom-switch mt-2">
                                 <input type="checkbox" class="custom-control-input" id="is_active" name="status"
-                                    value="1" {{ old('status', 1) ? 'checked' : '' }}>
+                                    value="1" {{ old('status', $feature->status) ? 'checked' : '' }}>
                                 <label class="custom-control-label" for="is_active">مفعل</label>
                             </div>
                         </div>
 
                         <div class="fi-actions d-flex justify-content-between align-items-center">
-                            <a href="{{route('services.index')}}" class="btn btn-light">رجوع</a>
+                            <a href="{{route('features.index')}}" class="btn btn-light">رجوع</a>
                             <input type="submit" class="btn btn-primary" value="حفظ الخدمة">
                         </div>
                     </form>
