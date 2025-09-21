@@ -10,7 +10,7 @@
                 <div class="input-group input-group-sm fi-search" style="max-width: 200px;">
                     <form action="{{ route('testmonials.index') }}" method="GET" class="d-flex w-100">
                         <input type="text" name="q" value="{{ request('q') }}" class="form-control"
-                            placeholder="ابحث عن خدمة...">
+                            placeholder="ابحث باسم العميل...">
                         <div class="input-group-append">
                             <button class="btn btn-outline-secondary ml-1" type="submit">بحث</button>
                         </div>
@@ -18,7 +18,7 @@
                 </div>
 
 
-                <x-button-href :href="route('testmonials.create') " title="إضافة "></x-button-href>
+                <x-button-href :href="route('testmonials.create')" title="إضافة "></x-button-href>
             </div>
         </div>
 
@@ -57,7 +57,10 @@
                                 <td>{{ $testmonial->name }}</td>
                                 <td>{{ $testmonial->position }}</td>
                                 <td>{{ $testmonial->description }}</td>
-                                <td>{{ $testmonial->image }}</td>
+                                <td><img src="{{ $testmonial->image }}" class=" rounded-circle"
+                                        style="width:50px; height:50px; object-fit:cover;" alt="{{ $testmonial->name }}">
+                                </td>
+                                </td>
                                 <td><span
                                         class="badge badge-{{ $testmonial->status === 1 ? 'info' : 'success' }} badge-pill">{{ $testmonial->status === 1 ? 'مفعل' : 'غير مفعل' }}</span>
                                 </td>
@@ -68,11 +71,7 @@
                                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             إجراءات
                                         </button>
-                                        <x-operations-dropdown
-                                        :edit-route="route('testmonials.edit', $testmonial->slug)"
-                                        :delete-route="route('testmonials.destroy', $testmonial->id)"
-
-/>
+                                        <x-operations-dropdown :edit-route="route('testmonials.edit', $testmonial->slug)" :delete-route="route('testmonials.destroy', $testmonial->id)" />
 
                                     </div>
                                 </td>

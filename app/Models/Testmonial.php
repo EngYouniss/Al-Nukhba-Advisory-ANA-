@@ -22,4 +22,8 @@ class Testmonial extends Model
             ->generateSlugsFrom('title')
             ->saveSlugsTo('slug');
     }
+
+    public function getImageAttribute($image){
+        return asset('storage/'.$image);
+    }
 }
