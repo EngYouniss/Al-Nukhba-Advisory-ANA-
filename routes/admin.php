@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\FaqsController;
 use App\Http\Controllers\Admin\FeatureController;
 use App\Http\Controllers\Admin\ServicesController;
 use App\Http\Controllers\Admin\TestmonialController;
@@ -16,6 +17,7 @@ Route::get('/index',function(){
     Route::resource('services',ServicesController::class);
     Route::resource('features',FeatureController::class);
     Route::resource('testmonials',TestmonialController::class);
+    Route::resource('faqs',FaqsController::class);
     Route::resource('messages', MessagesController::class)->only(['index','show','destroy']);
     Route::resource('subscribers', SubscriberController::class)->only(['index','destroy']);
 
