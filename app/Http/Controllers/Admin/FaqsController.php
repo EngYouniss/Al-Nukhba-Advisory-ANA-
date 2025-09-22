@@ -18,10 +18,10 @@ class FaqsController extends Controller
 
         if ($request->filled('q')) {
             $search = $request->input('q');
-            $query->where('title', 'like', "%{$search}%");
+            $query->where('question', 'like', "%{$search}%");
         }
 
-        $items = $query->latest()->paginate(10);
+        $faqs = $query->latest()->paginate(10);
 
         return view('admin.faqs.index', get_defined_vars());
     }
@@ -61,21 +61,21 @@ class FaqsController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $slug)
+    public function edit(string $id)
     {
-        $faqs = Faqs::where('slug', $slug)->firstOrFail();
+        $faq = Faqs::where('id', $id)->firstOrFail();
         return view('admin.faqs.update', get_defined_vars());
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(StoreFaqsRequest $request, string $slug)
+    public function update(StoreFaqsRequest $request, string $id)
     {
         $validated = $request->validated();
 
         try {
-            $faqs = Faqs::where('slug', $slug)->firstOrFail();
+            $faqs = Faqs::where('id', $id)->firstOrFail();
             $faqs->update($validated);
             return to_route('faqs.index')
                    ->with('success', 'Faqs updated successfully');
