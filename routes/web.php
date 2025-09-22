@@ -14,7 +14,10 @@ Route::view('profile', 'profile')
 
 require __DIR__.'/auth.php';
 
-Route::view('about','about');
+// Route::view('about','about');
 Route::get('/master',function(){
 return view('admin.layout.master');
 });
+Route::get('/about', function () {
+    return view('about');
+})->name('about');

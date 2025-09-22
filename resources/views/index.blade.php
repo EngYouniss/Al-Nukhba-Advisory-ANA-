@@ -1,5 +1,7 @@
 @extends('layout.master')
 @section('content')
+    @include('partials.hero')
+
     <!-- About Start -->
     @include('partials.about')
     <!-- About End -->
