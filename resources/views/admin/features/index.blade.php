@@ -53,7 +53,7 @@
                                 </td>
                                 <td>{{ $features->firstItem() + $loop->index }}</td>
                                 <td>{{ $feature->title }}</td>
-                                <td><i class="bi {{ $feature->icon }}"></i></td>
+                                <td><i class="{{ $feature->icon }} fa-2x"></i></td>
                                 <td><span
                                         class="badge badge-{{ $feature->status === 1 ? 'info' : 'success' }} badge-pill">{{ $feature->status === 1 ? 'مفعل' : 'غير مفعل' }}</span>
                                 </td>
