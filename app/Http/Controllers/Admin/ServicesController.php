@@ -19,9 +19,7 @@ class ServicesController extends Controller
             $search = $request->input('q');
             $query->where('title', 'like', "%{$search}%");
         }
-        $services = $query->latest()->paginate(10);
-
-
+        $services = $query->paginate(7);
         return view('admin.services.index', get_defined_vars());
     }
 

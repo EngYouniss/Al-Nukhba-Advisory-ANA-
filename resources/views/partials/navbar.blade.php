@@ -9,10 +9,10 @@
   <div class="collapse navbar-collapse" id="navbarCollapse">
     <!-- لاحظ: استبدلنا ms-auto بـ me-auto ليُدفع للقائمة يسار مع RTL -->
     <div class="navbar-nav me-auto py-0">
-      <a href="index.html" class="nav-item nav-link active">الرئيسية</a>
+      <a href="{{route('client.index')}}" class="nav-item nav-link @yield('active-index')">الرئيسية</a>
       <a href="{{route('about')}}" class="nav-item nav-link">من نحن</a>
-      <a href="{{route('services')}}" class="nav-item nav-link">خدماتنا</a>
-      <a href="contact.html" class="nav-item nav-link">اتصل بنا</a>
+      <a href="{{route('client.services')}}" class="nav-item nav-link @yield('active-services')">خدماتنا</a>
+      <a href="contact.html" class="nav-item nav-link @yield('active-contact')">اتصل بنا</a>
     </div>
   </div>
 </nav>

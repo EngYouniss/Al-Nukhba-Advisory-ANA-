@@ -2,6 +2,7 @@
 @section('content')
     <!-- العنوان الرئيسي -->
     <div class="fi-page-title mt-4">قائمة الخدمات</div>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
 
     <div class="fi-card card ">
         <div class="fi-card-header card-header">
@@ -18,7 +19,7 @@
                 </div>
 
 
-                <x-button-href :href="route('services.create') " title="إضافة خدمة"></x-button-href>
+                <x-button-href :href="route('services.create')" title="إضافة خدمة"></x-button-href>
             </div>
         </div>
 
@@ -53,7 +54,8 @@
                                 </td>
                                 <td>{{ $services->firstItem() + $loop->index }}</td>
                                 <td>{{ $service->title }}</td>
-                                <td><i class="bi {{ $service->icon }}"></i></td>
+                                <td><i class="{{ $service->icon }} fa-2x"></i>
+                                </td>
                                 <td><span
                                         class="badge badge-{{ $service->status === 1 ? 'info' : 'success' }} badge-pill">{{ $service->status === 1 ? 'مفعل' : 'غير مفعل' }}</span>
                                 </td>
@@ -64,11 +66,7 @@
                                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             إجراءات
                                         </button>
-                                        <x-operations-dropdown
-                                        :edit-route="route('services.edit', $service->slug)"
-                                        :delete-route="route('services.destroy', $service->id)"
-
-/>
+                                        <x-operations-dropdown :edit-route="route('services.edit', $service->slug)" :delete-route="route('services.destroy', $service->id)" />
 
                                     </div>
                                 </td>

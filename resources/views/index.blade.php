@@ -1,4 +1,5 @@
 @extends('layout.master')
+@section('active-route','active')
 @section('content')
     @include('partials.hero')
 
@@ -13,12 +14,13 @@
     <!-- Newsletter End -->
 
     <!-- Service Start -->
-    @include('partials.services')
+    @include('partials.services',['services'=>$services])
     <!-- Service End -->
 
 
+
     <!-- Features Start -->
-    @include('partials.features')
+    @include('partials.features',['features'=>$features])
     <!-- Features End -->
 
 
@@ -40,5 +42,5 @@
 
     <!-- Back to Top -->
     <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
-    </div>  
+    </div>
 @endsection
