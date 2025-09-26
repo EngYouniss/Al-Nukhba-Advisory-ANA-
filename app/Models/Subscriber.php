@@ -9,4 +9,5 @@ class Subscriber extends Model
 {
     /** @use HasFactory<\Database\Factories\SubscriberFactory> */
     use HasFactory;
+protected $guarded=['id'];
 }

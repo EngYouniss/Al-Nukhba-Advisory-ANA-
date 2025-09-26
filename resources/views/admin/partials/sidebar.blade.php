@@ -46,6 +46,7 @@
       <x-side-bar-tab href="{{ route('testmonials.index') }}" icon="fe-message-square" name="شهادات عملائنا"/>
       {{-- FAQs --}}
       <x-side-bar-tab href="{{ route('faqs.index') }}" icon="fe-help-circle" name="الأسئلة الشائعة"/>
+      <x-side-bar-tab href="{{ route('faqs.index') }}" icon="fe-help-circle" name="الأسئلة الشائعة"/>
     </ul>
   </nav>
 </aside>

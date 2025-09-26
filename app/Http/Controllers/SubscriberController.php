@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Subscriber;
 use App\Http\Requests\StoreSubscriberRequest;
 use App\Http\Requests\UpdateSubscriberRequest;;
+
 use Illuminate\Http\Request;
 
 class SubscriberController extends Controller
@@ -93,6 +94,6 @@ class SubscriberController extends Controller
         $subscriber->delete();
 
         return to_route('subscribers.index')
-               ->with('success', ' تم الحذف بنجاح ');
+            ->with('success', ' تم الحذف بنجاح ');
     }
 }
