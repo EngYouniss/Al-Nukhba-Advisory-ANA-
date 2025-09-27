@@ -53,7 +53,7 @@
                                 </td>
                                 <td>{{ $services->firstItem() + $loop->index }}</td>
                                 <td>{{ $service->title }}</td>
-                                <td><i class="{{$service->icon }} fa-2x"></i>
+                                <td><i class="{{ $service->icon }} fa-2x"></i>
                                 </td>
                                 <td><span
                                         class="badge badge-{{ $service->status === 1 ? 'info' : 'success' }} badge-pill">{{ $service->status === 1 ? 'مفعل' : 'غير مفعل' }}</span>

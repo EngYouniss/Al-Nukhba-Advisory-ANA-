@@ -28,11 +28,9 @@
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
-              @forelse ($ as )
 
-              @empty
-
-              @endforelse
+            {{-- الاشعارات اكمل --}}
+             
               <div class="modal-body">
                 <div class="list-group list-group-flush my-n3">
                   <div class="list-group-item bg-transparent">
