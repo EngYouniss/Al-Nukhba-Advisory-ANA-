@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\FaqsController;
 use App\Http\Controllers\Admin\FeatureController;
 use App\Http\Controllers\Admin\IndexController;
 use App\Http\Controllers\Admin\ServicesController;
+use App\Http\Controllers\Admin\TeamController;
 use App\Http\Controllers\Admin\TestmonialController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\UploadController;
@@ -19,4 +20,5 @@ Route::get('/index',[IndexController::class,'index'])->name('admin.index');
     Route::resource('faqs',FaqsController::class);
     Route::resource('messages', MessagesController::class)->only(['index','show','destroy']);
     Route::resource('subscribers', SubscriberController::class)->only(['index','destroy']);
+    Route::resource('teams', TeamController::class);
 

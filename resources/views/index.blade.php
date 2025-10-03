@@ -30,7 +30,7 @@
 
 
     <!-- Testimonial Start -->
-    @include('partials.testmonials')
+@include('partials.testmonials', ['testmonials' => $testmonials ])
     <!-- Testimonial End -->
 
 

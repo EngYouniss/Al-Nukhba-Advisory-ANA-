@@ -1,4 +1,4 @@
-<div class="container-xxl bg-primary hero-header" dir="rtl" lang="ar">
+<div class="container-xxl bg-primary hero-header " dir="rtl" lang="ar">
   <div class="container">
     <div class="row g-5 align-items-center">
 
