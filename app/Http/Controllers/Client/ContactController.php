@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Client;
 
 use App\Http\Controllers\Controller;
 use App\Models\Message;
+use App\Models\User;
+use App\Notifications\NewMessageNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -29,7 +31,9 @@ class ContactController extends Controller
         $data = $validator->validated();
 
         $created = Message::create($data);
-
+        $admin = User::find(1);
+        $admin->notify(new NewMessageNotification($request->name, $request->email,
+         $request->subject, $request->message));
         if ($created) {
             return redirect()->back()->with('success', 'شكراً لتواصلك معنا سيتم الرد قريباً.');
         }
