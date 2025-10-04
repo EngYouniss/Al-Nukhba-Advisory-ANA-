@@ -18,26 +18,32 @@ class ContactController extends Controller
     }
     public function store(Request $request)
     {
-        $validator = Validator::make(
-            $request->all(),
-            [
-                'name'    => 'required|string|max:64',
-                'email'   => 'required|email|max:64',
-                'subject' => 'required|string|max:64',
-                'message' => 'required|string|max:500',
-            ]
-        );
-
-        $data = $validator->validated();
+        // فاليديشن يوقف عند الخطأ ويرجع برسالة تلقائيًا
+        $data = $request->validate([
+            'name'    => 'required|string|max:64',
+            'email'   => 'required|email|max:64',
+            'subject' => 'required|string|max:64',
+            'message' => 'required|string|max:500',
+        ]);
 
         $created = Message::create($data);
-        $admin = User::find(1);
-        $admin->notify(new NewMessageNotification($request->name, $request->email,
-         $request->subject, $request->message));
+
+        // خزّن أولًا، بعدها الإشعار
         if ($created) {
-            return redirect()->back()->with('success', 'شكراً لتواصلك معنا سيتم الرد قريباً.');
+            $admin = User::find(1); // تأكد أن هذا المستخدم موجود
+            if ($admin) {
+                // لو ما عندك worker شغّال، احذف ShouldQueue من الإشعار (شوف الملف تحت)
+                $admin->notify(new NewMessageNotification(
+                    $data['name'],
+                    $data['email'],
+                    $data['subject'],
+                    $data['message'],
+                ));
+            }
+
+            return back()->with('success', 'شكراً لتواصلك معنا سيتم الرد قريباً.');
         }
 
-        return redirect()->back()->with('error', 'هناك خطأ حاول مجدداً.');
+        return back()->with('error', 'هناك خطأ حاول مجدداً.');
     }
 }

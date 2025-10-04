@@ -36,9 +36,9 @@ class NewMessageNotification extends Notification implements ShouldQueue
             $this->email,
             $this->subject,
             $this->message
-        ))->to($notifiable->email); // أو $this->user لو تبغى ترسله لإيميل محدد
+        ))->replyTo($notifiable->email);
     }
-
+       
     public function toArray(object $notifiable): array
     {
         return [
