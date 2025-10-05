@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\TeamController;
 use App\Http\Controllers\Admin\TestmonialController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\UploadController;
+use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\MessagesController;
 use App\Http\Controllers\SubscriberController;
 
@@ -22,3 +23,4 @@ Route::get('/index',[IndexController::class,'index'])->name('admin.index');
     Route::resource('subscribers', SubscriberController::class)->only(['index','destroy']);
     Route::resource('teams', TeamController::class);
 
+    Route::get('auth/login',[AuthController::class,'index'])->name('auth.login');
