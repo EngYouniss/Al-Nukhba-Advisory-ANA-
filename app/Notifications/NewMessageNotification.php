@@ -2,50 +2,47 @@
 
 namespace App\Notifications;
 
-use App\Mail\NewMessageMail;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class NewMessageNotification extends Notification implements ShouldQueue
+class NewMessageNotification extends Notification
 {
     use Queueable;
-
-    public $name;
-    public $email;
-    public $subject;
-    public $message;
-
-    public function __construct($name, $email, $subject, $message)
+  public array $data;
+    /**
+     * Create a new notification instance.
+     */
+    public function __construct(array $data)
     {
-        $this->name    = $name;
-        $this->email   = $email;
-        $this->subject = $subject;
-        $this->message = $message;
+        $this->data=$data;
     }
 
+    /**
+     * Get the notification's delivery channels.
+     *
+     * @return array<int, string>
+     */
     public function via(object $notifiable): array
     {
-        return ['mail', 'database'];
+        return ['database'];
     }
 
-    public function toMail(object $notifiable)
-    {
-        return (new NewMessageMail(
-            $this->name,
-            $this->email,
-            $this->subject,
-            $this->message
-        ))->replyTo($notifiable->email);
-    }
-       
+
+
+    /**
+     * Get the array representation of the notification.
+     *
+     * @return array<string, mixed>
+     */
     public function toArray(object $notifiable): array
     {
         return [
-            'name'    => $this->name,
-            'email'   => $this->email,
-            'subject' => $this->subject,
-            'message' => $this->message,
+          'name'=>  $this->data['name'],
+          'email'=>  $this->data['email'],
+          'subject'=>  $this->data['subject'],
+          'message'=>  $this->data['message'],
         ];
     }
 }

@@ -28,19 +28,11 @@ class ContactController extends Controller
 
         $created = Message::create($data);
 
-        // خزّن أولًا، بعدها الإشعار
         if ($created) {
-            $admin = User::find(1); // تأكد أن هذا المستخدم موجود
-            if ($admin) {
-                // لو ما عندك worker شغّال، احذف ShouldQueue من الإشعار (شوف الملف تحت)
-                $admin->notify(new NewMessageNotification(
-                    $data['name'],
-                    $data['email'],
-                    $data['subject'],
-                    $data['message'],
-                ));
+            $admin = User::find(1);
+            if($admin){
+            $admin->notify(new NewMessageNotification($data));
             }
-
             return back()->with('success', 'شكراً لتواصلك معنا سيتم الرد قريباً.');
         }
 
