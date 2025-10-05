@@ -12,15 +12,17 @@ use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\MessagesController;
 use App\Http\Controllers\SubscriberController;
 
-Route::get('/index',[IndexController::class,'index'])->name('admin.index');
+Route::get('/index', [IndexController::class, 'index'])->name('admin.index');
 
 
-    Route::resource('services',ServicesController::class);
-    Route::resource('features',FeatureController::class);
-    Route::resource('testmonials',TestmonialController::class);
-    Route::resource('faqs',FaqsController::class);
-    Route::resource('messages', MessagesController::class)->only(['index','show','destroy']);
-    Route::resource('subscribers', SubscriberController::class)->only(['index','destroy']);
-    Route::resource('teams', TeamController::class);
+Route::resource('services', ServicesController::class);
+Route::resource('features', FeatureController::class);
+Route::resource('testmonials', TestmonialController::class);
+Route::resource('faqs', FaqsController::class);
+Route::resource('messages', MessagesController::class)->only(['index', 'show', 'destroy']);
+Route::resource('subscribers', SubscriberController::class)->only(['index', 'destroy']);
+Route::resource('teams', TeamController::class);
 
-    Route::get('auth/login',[AuthController::class,'index'])->name('auth.login');
+Route::get('/login', [AuthController::class, 'index'])->name('login');
+Route::post('/login', [AuthController::class, 'login'])->name('login.attempt');
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout')->middleware('auth');

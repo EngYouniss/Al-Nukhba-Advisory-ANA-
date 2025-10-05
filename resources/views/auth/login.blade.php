@@ -118,12 +118,13 @@
                 <p class="muted mb-0">ادخل بياناتك للوصول إلى لوحة القضايا</p>
               </div>
 
-              <form class="text-end" novalidate>
+              <form class="text-end" novalidate action="{{route('login.attempt')}}" method="POST">
+                @csrf
                 <div class="mb-3">
                   <label for="email" class="form-label">البريد الإلكتروني</label>
                   <div class="input-group">
                     <span class="input-group-text"><i class="bi bi-envelope"></i></span>
-                    <input id="email" type="email" class="form-control" placeholder="name@example.com" required>
+                    <input id="email" type="email" class="form-control" placeholder="name@example.com" required name="email">
                   </div>
                 </div>
 
@@ -131,7 +132,7 @@
                   <label for="password" class="form-label">كلمة المرور</label>
                   <div class="input-group">
                     <span class="input-group-text"><i class="bi bi-key"></i></span>
-                    <input id="password" type="password" class="form-control" placeholder="••••••••" required>
+                    <input id="password" type="password" class="form-control" placeholder="••••••••" required name="password">
                     <button class="btn btn-outline-secondary" type="button" id="toggleBtn" aria-label="إظهار/إخفاء">
                       <i class="bi bi-eye" id="toggleIcon"></i>
                     </button>
